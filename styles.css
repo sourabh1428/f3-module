@@ -266,10 +266,25 @@ line-height: normal;
     font-weight: 400;
     color:#B8BCCC;
 }
-
+/* .hero{
+    display: none;
+} */
 /* .hero{display: none;} */
+#errorPage{
+    
+    height: 100vh;
+    width: 100vw;
+    background-color: red;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+}
+#errorBar{
 
-
+    font-size: larger;
+}
 
 
 .card b{

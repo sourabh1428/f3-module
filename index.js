@@ -4,7 +4,8 @@ const API_KEY="AkrgetRnDBQS3gexGoeOWot5kEkgQjynjU8AAYXE692sXT2Slr3FnSc4OVb7CuJ9"
 const hero=document.getElementById("hero");
 const resp=document.querySelector(".respOnse");
 const searchBox=document.getElementById("searchBox");
-
+const errorBar=document.getElementById("errorBar");
+const errorPage=document.getElementById("errorPage");
 
 let obj={
     "ip": "27.97.64.7",
@@ -50,31 +51,31 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
  
  getInfoBtn.addEventListener("click",()=>searchMe());
  
- async function searchMe(){
+ async function searchMe() {
     // console.log(hero);
     // while(hero.lastChild){
     //     hero.removeChild(hero.lastChild);
     // }
-    hero.style.display="none";
+    hero.style.display = "none";
 
     try {
         const info = await getInfo();
         const posto = await getAllPostOffice(info.postal);
         postData = posto;
-    
+
         resp.style.display = "block";
         setAllValues(info, posto);
         setAllPostOffice(posto);
+
+        console.log("All promises have settled successfully.");
     } catch (error) {
         console.error("An error occurred:", error);
-        alert("An error occurred");
+        alert("An error occurred: " + error);
+        errorBar.innerText=`${error}`
+        errorPage.style.display="flex";
     }
-    
+}
 
-   
-  
-
-};
 // function fillData(data){
 //     document.getElementById()=data.
 // }
@@ -95,15 +96,24 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
 
 
 
-    async function getInfo(){
-        const res=await fetch( `https://ipapi.co/${IP}/json/`);
-       try{ const data=await res.json();
-        
-        setGoogleMapsCoordinates(data.latitude,data.longitude,10);
-        return data;}
-        catch{
-           return new Error("IP not found");
+    async function getInfo() {
+      const res = await fetch(`https://ipapi.co/${IP}/json/`);
+  
+      if (res.ok) {
+        try {
+          const data = await res.json();
+
+          setGoogleMapsCoordinates(data.latitude, data.longitude, 10);
+          return data;
+        } catch (error) {
+          return new Error("IP not found", error);
         }
+      } else {
+        return new Error("IP Status not found");
+      }
+    // return new Promise((res,rej)=>{
+    //     setTimeout(rej("huehu"),3000);
+    // });
     }
 
     // Function to set the Google Maps iframe URL with custom coordinates
@@ -157,15 +167,22 @@ function setGoogleMapsCoordinates(latitude, longitude, zoom) {
         return date_time;
     }
     async function getAllPostOffice(pincode){
-        try{
-        const res=await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
-        const jdata=await res.json();
+        const res = await fetch(
+          `https://api.postalpincode.in/pincode/${pincode}`
+        );
       
-        return jdata;}
-        catch{
-            return new Error("POST OFFICE API PROBLEM");
+        if(!res.ok){
+            return new Error("Response is not a valid post");
+        }else{
+        try {
+          const jdata = await res.json();
+
+          return jdata;
+        } catch (error) {
+          return new Error("POST OFFICE API PROBLEM", error);
         }
     }
+}
 async function setAllValues(data,x){
     document.getElementById("myIp").innerText= ':  '+data.ip;
     document.getElementById("myLong").innerText=data.longitude;

@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="errorPage">
+        <div id="errorBar">hello</div>
+      
+    </div>
     
     <div class="hero" id="hero">
         <div class="hleft"> 
@@ -24,7 +28,7 @@
 
    
 
-
+    <div class="respOnse">
     <div class="hero1">
         <div class="hero1u">
             IP Address is  <b id="myIp"></b>
@@ -48,6 +52,7 @@
 
         </div>
     </div>
+   
         <div class="heroCurrLoc">
         <h1>Your Current Location</h1>
         <iframe id="googleMapsIframe" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
@@ -57,7 +62,7 @@
        
     <div class="moreInfo">
             <h1>More information about you</h1>
-            <div>
+            <div class="moreHero">
                 <h3>TimeZone: <b id="myTimeZone"></b></h3>
                 <h3>Date and Time: <b id="myDatendTime"></b></h3>
                 <h3>Pincode: <b id="myPincode"></b></h3>
@@ -67,7 +72,7 @@
 
 <div class="hero4">
     <h1>Post Office near you</h1>
-    <input type="text" placeholder="Search By name">
+    <input type="text" placeholder="Search By name" id="searchBox">
     <div class="H4container" id="H4container">
        
     </div>
@@ -76,7 +81,7 @@
 
 </div>
 
-
+</div>
  <script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
