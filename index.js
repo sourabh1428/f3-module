@@ -1,8 +1,9 @@
 let IP;
+let postData;
 const API_KEY="AkrgetRnDBQS3gexGoeOWot5kEkgQjynjU8AAYXE692sXT2Slr3FnSc4OVb7CuJ9";
 const hero=document.getElementById("hero");
 const resp=document.querySelector(".respOnse");
-
+const searchBox=document.getElementById("searchBox");
 
 
 let obj={
@@ -59,7 +60,7 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
     resp.style.display="block";
     const info= await getInfo();
     const posto=await getAllPostOffice(info.postal);
-    setGoogleMapsCoordinates(info.latitude,info.longitude);
+    postData=posto;
    
     setAllValues(info,posto);
     setAllPostOffice(posto);
@@ -184,6 +185,32 @@ function setAllPostOffice(arr){
 
 }
 //search functionality
+
+searchBox.addEventListener("input",(e)=>searchCard(e.target.value));
+
+
+async function searchCard(str){
+    const data=postData[0].PostOffice;
+    
+
+    const searchValue = str.toLowerCase();
+
+    // Filter the data based on the search value
+    const filteredData =await data.filter((e) => e.Name.toLowerCase().includes(searchValue));
+    const cardContainer=document.getElementById("H4container");
+    // Clear the card container
+    cardContainer.innerHTML = '';
+
+    // Generate and display cards for the filtered data
+    filteredData.forEach((e) => {
+        const card = document.createElement("div");
+        card.classList="card";
+        card.innerHTML = `<h4>Name <b>${e.Name}</b></h4><h4>Branch Type <b>${e.BranchType}</b></h4><h4>Delivery Status <b>${e.DeliveryStatus}</b></h4><h4>District <b>${e.District}</b></h4><h4>Division <b>${e.Division}</b></h4>`;
+        cardContainer.append(card);
+      
+    });
+
+}
 
 
 
