@@ -278,3 +278,29 @@ line-height: normal;
 #myIp{
     font-size: 2rem;
 }
+#getInfoBtn{
+    color: #FFF;
+}
+.moreHero{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+@media screen and (max-width:700px) {
+    .hero{
+        flex-direction: column !important;
+       
+        background-color: red !important;
+    }
+    .hleft{
+        height: 50% !important;
+        width: 100% !important;
+
+    }
+    .hright{
+        height: 50% !important;
+        width: 100% !important;
+    }
+}

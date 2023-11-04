@@ -56,14 +56,23 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
     //     hero.removeChild(hero.lastChild);
     // }
     hero.style.display="none";
-    console.log(resp);
-    resp.style.display="block";
-    const info= await getInfo();
-    const posto=await getAllPostOffice(info.postal);
-    postData=posto;
+
+    try {
+        const info = await getInfo();
+        const posto = await getAllPostOffice(info.postal);
+        postData = posto;
+    
+        resp.style.display = "block";
+        setAllValues(info, posto);
+        setAllPostOffice(posto);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        alert("An error occurred");
+    }
+    
+
    
-    setAllValues(info,posto);
-    setAllPostOffice(posto);
+  
 
 };
 // function fillData(data){
@@ -88,10 +97,13 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
 
     async function getInfo(){
         const res=await fetch( `https://ipapi.co/${IP}/json/`);
-        const data=await res.json();
-        console.log(data);
+       try{ const data=await res.json();
+        
         setGoogleMapsCoordinates(data.latitude,data.longitude,10);
-        return data;
+        return data;}
+        catch{
+           return new Error("IP not found");
+        }
     }
 
     // Function to set the Google Maps iframe URL with custom coordinates
@@ -141,15 +153,18 @@ function setGoogleMapsCoordinates(latitude, longitude, zoom) {
         let date_time = year + "-" + month + "-" + date;
 
         // "2021-03-22"
-        console.log(date_time);
+      
         return date_time;
     }
     async function getAllPostOffice(pincode){
-
+        try{
         const res=await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
         const jdata=await res.json();
-        console.log(jdata);
-        return jdata;
+      
+        return jdata;}
+        catch{
+            return new Error("POST OFFICE API PROBLEM");
+        }
     }
 async function setAllValues(data,x){
     document.getElementById("myIp").innerText= ':  '+data.ip;
@@ -174,7 +189,7 @@ async function setAllValues(data,x){
 }
 function setAllPostOffice(arr){
     const cont=document.getElementById("H4container");
-    console.log(arr[0].PostOffice);
+   
     arr[0].PostOffice.map((e)=>{
         const card=document.createElement("div");
         card.classList="card";
