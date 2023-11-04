@@ -67,9 +67,9 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
         setAllValues(info, posto);
         setAllPostOffice(posto);
 
-        console.log("All promises have settled successfully.");
+        console.log("All promises have settled successfully. ✅");
     } catch (error) {
-        console.error("An error occurred:", error);
+        console.error("An error occurred: ☠️", error);
         alert("An error occurred: " + error);
         errorBar.innerText=`${error}`
         errorPage.style.display="flex";
