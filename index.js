@@ -59,7 +59,7 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
     resp.style.display="block";
     const info= await getInfo();
     const posto=await getAllPostOffice(info.postal);
-    setGoogleMapsCoordinates(info.latitudem,info.longitude);
+    setGoogleMapsCoordinates(info.latitude,info.longitude);
    
     setAllValues(info,posto);
     setAllPostOffice(posto);

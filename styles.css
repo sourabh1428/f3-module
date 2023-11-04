@@ -26,7 +26,7 @@
 .hleft h1{
     color: #575A85;
     font-family: Montserrat;
-    font-size: 36px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -34,7 +34,7 @@
 .hleft p{
     color: #B8BCCC;
     font-family: Inter;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -54,7 +54,7 @@
 .hright h3 ,i {
     color: #FFF;
     font-family: Inter;
-    font-size: 36px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -66,7 +66,7 @@
     padding: 20px;
     background: #575A85;
     font-family: Inter;
-    font-size: 28px;
+    font-size: 2;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -93,9 +93,11 @@
 }
 .hero1u{
     display: flex;
+    align-items: center;
+    justify-content: center;
     color: rgba(184, 188, 204, 0.50);
     font-family: Montserrat;
-    font-size: 34px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -104,7 +106,7 @@
 .hero1u b{
     color: #B8BCCC;
 font-family: Montserrat;
-font-size: 34px;
+font-size: 1rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -119,7 +121,7 @@ line-height: normal;
 .hero1d h1{
     color: rgba(184, 188, 204, 0.50);
     font-family: Inter;
-    font-size: 34px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -143,7 +145,7 @@ line-height: normal;
     color: #B8BCCC;
     text-align: center;
     font-family: Montserrat;
-    font-size: 48px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -165,7 +167,7 @@ line-height: normal;
     color: #B8BCCC;
     text-align: center;
     font-family: Montserrat;
-    font-size: 48px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -180,7 +182,7 @@ line-height: normal;
 .moreInfo h3{
     color: rgba(184, 188, 204, 0.50);
     font-family: Inter;
-    font-size: 34px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal; 
@@ -205,7 +207,7 @@ line-height: normal;
     color: #B8BCCC;
     text-align: center;
     font-family: Montserrat;
-    font-size: 48px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -220,7 +222,7 @@ line-height: normal;
     font-size: larger;
     color: #B8BCCC;
     font-family: Montserrat;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -272,4 +274,7 @@ line-height: normal;
 
 .card b{
     font-weight: 300;
+}
+#myIp{
+    font-size: 2rem;
 }
