@@ -1,6 +1,10 @@
 let IP;
 const API_KEY="AkrgetRnDBQS3gexGoeOWot5kEkgQjynjU8AAYXE692sXT2Slr3FnSc4OVb7CuJ9";
 const hero=document.getElementById("hero");
+const resp=document.querySelector(".respOnse");
+
+
+
 let obj={
     "ip": "27.97.64.7",
     "network": "27.97.64.0/23",
@@ -31,7 +35,7 @@ let obj={
     "org": "Idea Cellular Limited"
 };
 
-let postOffices;
+
 
 $.getJSON("https://api.ipify.org?format=json", function(data) {
          
@@ -41,34 +45,42 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
         
     })
  const getInfoBtn=document.getElementById("getInfoBtn");
-getInfoBtn.addEventListener("click",()=>{
+
+ 
+ getInfoBtn.addEventListener("click",()=>searchMe());
+ 
+ async function searchMe(){
     // console.log(hero);
     // while(hero.lastChild){
     //     hero.removeChild(hero.lastChild);
     // }
     hero.style.display="none";
+    console.log(resp);
+    resp.style.display="block";
+    const info= await getInfo();
+    const posto=await getAllPostOffice(info.postal);
+    setGoogleMapsCoordinates(info.latitudem,info.longitude);
+   
+    setAllValues(info,posto);
+    setAllPostOffice(posto);
 
-    getInfo().then((data)=>getCurrentTime(data.timeZone));
-    getInfo().then((data)=>getAllPostOffice(data.postal));
-
-
-});
+};
 // function fillData(data){
 //     document.getElementById()=data.
 // }
-async function test(){
-    hero.style.display="none";
-    getCurrentTime(obj.timeZone);
+// async function test(){
+//     hero.style.display="none";
+//     getCurrentTime(obj.timeZone);
 
-    let x=await getAllPostOffice(obj.postal);
+//     let x=await getAllPostOffice(obj.postal);
 
-    setGoogleMapsCoordinates(obj.latitudem,obj.longitude);
+//     setGoogleMapsCoordinates(obj.latitudem,obj.longitude);
  
-    setAllValues(obj,x);
-    console.log(x);
-    setAllPostOffice(x);
-}
-test();
+//     setAllValues(obj,x);
+//     console.log(x);
+//     setAllPostOffice(x);
+// }
+// test();
 
 
 

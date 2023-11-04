@@ -4,7 +4,9 @@
     margin: 0px;
     padding: 0px;
 }
-
+.respOnse{
+    display: none;
+}
 .hero{
     display: flex;
     flex-direction: row;
